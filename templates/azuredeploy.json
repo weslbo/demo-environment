@@ -578,6 +578,15 @@
                 "id": "[resourceId('Microsoft.Network/networkSecurityGroups', variables('networkSettings').nsgSubnetSPName)]"
               }
             }
+          },
+          {
+            "name": "AzureBastionSubnet",
+            "properties": {
+              "addressPrefix": "[variables('azureBastion').subnetPrefix]",
+              "networkSecurityGroup": {
+                "id": "[resourceId('Microsoft.Network/networkSecurityGroups', 'NSG-Subnet-AzureBastion')]"
+              }
+            }
           }
         ]
       }
@@ -1416,23 +1425,6 @@
             }
           }
           ]
-      }
-    },
-    {
-      "condition": "[equals(parameters('addAzureBastion'), 'Yes')]",
-      "type": "Microsoft.Network/virtualNetworks/subnets",
-      "name": "[concat(variables('networkSettings').vNetPrivateName, '/', 'AzureBastionSubnet')]",
-      "apiVersion": "2020-07-01",
-      "location": "[parameters('location')]",
-      "dependsOn": [
-        "[resourceId('Microsoft.Network/virtualNetworks', variables('networkSettings').vNetPrivateName)]",
-        "[resourceId('Microsoft.Network/networkSecurityGroups', 'NSG-Subnet-AzureBastion')]"
-      ],
-      "properties": {
-        "addressPrefix": "[variables('azureBastion').subnetPrefix]",
-        "networkSecurityGroup": {
-          "id": "[resourceId('Microsoft.Network/networkSecurityGroups', 'NSG-Subnet-AzureBastion')]"
-        }
       }
     },
     {
