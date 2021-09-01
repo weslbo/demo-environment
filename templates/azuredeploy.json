@@ -578,15 +578,6 @@
                 "id": "[resourceId('Microsoft.Network/networkSecurityGroups', variables('networkSettings').nsgSubnetSPName)]"
               }
             }
-          },
-          {
-            "name": "AzureBastionSubnet",
-            "properties": {
-              "addressPrefix": "[variables('azureBastion').subnetPrefix]",
-              "networkSecurityGroup": {
-                "id": "[resourceId('Microsoft.Network/networkSecurityGroups', 'NSG-Subnet-AzureBastion')]"
-              }
-            }
           }
         ]
       }
